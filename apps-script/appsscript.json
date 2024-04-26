@@ -1,23 +1,16 @@
 {
   "timeZone": "Europe/Paris",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
   "dependencies": {
-    "libraries": [
-      {
-        "userSymbol": "OAuth2",
-        "version": "43",
-        "libraryId": "1B7FSrk5Zi6L1rSxxTDgDEUsPzlukDsi4KGuTMorsTQHhGBzBkMun4iDF"
-      }
-    ],
     "enabledAdvancedServices": [
       {
         "userSymbol": "Calendar",
-        "version": "v3",
-        "serviceId": "calendar"
+        "serviceId": "calendar",
+        "version": "v3"
       }
     ]
   },
-  "exceptionLogging": "STACKDRIVER",
-  "runtimeVersion": "V8",
   "oauthScopes": [
     "https://www.googleapis.com/auth/fitness.sleep.read",
     "https://www.googleapis.com/auth/fitness.activity.read",
