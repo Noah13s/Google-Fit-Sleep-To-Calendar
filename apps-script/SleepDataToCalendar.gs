@@ -15,13 +15,11 @@ function fetch() {
       Authorization: 'Bearer ' + ScriptApp.getOAuthToken()
     }
   });
-  if (response){
-  return response;
-  }
+  return response
 }
 
 function parseResponse(response) {
-  if (!response) {
+  if (JSON.parse(response.getContentText()).session.length === 0) {
     console.log("No data to update");
     return;
   }
