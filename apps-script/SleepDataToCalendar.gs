@@ -53,9 +53,13 @@ function createSleepEvent(start, end) {
     // Creates an event for sleep and logs the ID.
     var event = CalendarApp.getCalendarsByName(CalendarName)[0].createEvent('Sleep',
       new Date(startLongFormat),
-      new Date(endLongFormat));
+      new Date(endLongFormat),
+      {
+        description: String(getTimeDifference(startLongFormat, endLongFormat))
+      }
+    );
     
-    Logger.log('Event ID: ' + event.getId());
+    Logger.log('Event ID Created: ' + event.getId());
   } else {
     console.log("Event already exists");
   }
@@ -104,6 +108,24 @@ function millisecondsToTime(milliseconds) {
     return formattedHours + ':' + formattedMinutes;
 }
 
+function getTimeDifference(startLongFormat, endLongFormat) {
+  // Parse the date strings into Date objects
+  const startDate = new Date(startLongFormat);
+  const endDate = new Date(endLongFormat);
+
+  // Calculate the difference in milliseconds
+  const diffInMs = endDate.getTime() - startDate.getTime();
+
+  // Convert milliseconds to hours and minutes
+  const hours = Math.floor(diffInMs / (1000 * 60 * 60));
+  const minutes = Math.floor((diffInMs % (1000 * 60 * 60)) / (1000 * 60));
+
+  // Format the output string with leading zeros for hours and minutes
+  const formattedHours = hours.toString().padStart(2, '0');
+  const formattedMinutes = minutes.toString().padStart(2, '0');
+
+  return `${formattedHours}h${formattedMinutes}`;
+}
 
 function DateToMilis(dateString) {//"DD/MM/YYYY" argument
   dateArgs = String(dateString).match(/\d{2,4}/g),
